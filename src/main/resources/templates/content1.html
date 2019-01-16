@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div th:fragment="info_change">
+    <div class="container" id="info_change">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#pw_cg">修改密码</a></li>
+            <li><a data-toggle="tab" href="#rn_cg">修改昵称</a></li>
+            <li><a data-toggle="tab" href="#pc_cg">修改地区</a></li>
+            <li><a data-toggle="tab" href="#hp_cg">修改头像</a></li>
+        </ul>
+        <div class="tab-content middle-box text-center">
+            <div id="pw_cg" class="tab-pane fade in active">
+                <form class="m-t" role="form" action="" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">旧密码</span>
+                        <input class="form-control" type="password" style="width: 300px" placeholder="print your old password" name="password_old" required="" />
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">新密码</span>
+                        <input class="form-control" type="password" style="width: 300px" placeholder="print your new password" name="password" required="" />
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">新密码</span>
+                        <input class="form-control" type="password" style="width: 300px" placeholder="print your new password again" name="password2" required="" />
+                    </div>
+                    <div class="input-group" style="left: 100px;margin-top: 10px">
+                        <button id="btn1" type="submit" class="btn btn-primary block" >Change Password</button>
+                    </div>
+                </form>
+            </div>
+            <div id="rn_cg" class="tab-pane fade">
+                <form class="m-t" role="form" action="" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">旧昵称</span>
+                        <input class="form-control" type="text" style="width: 300px"  th:value="${realName_old}" required="" readonly/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">新昵称</span>
+                        <input class="form-control" type="text" style="width: 300px" placeholder="print your new realName again" name="realName" required="" />
+                    </div>
+                    <div class="input-group" style="left: 100px;margin-top: 10px">
+                        <button id="btn2" type="submit" class="btn btn-primary block">Change Realname</button>
+                    </div>
+                </form>
+            </div>
+            <div id="pc_cg" class="tab-pane fade">
+                <form class="m-t" role="form" action="" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">旧地区</span>
+                        <input class="form-control" type="text" style="width: 300px"  th:value="${provinceAndCity_old}" required="" readonly/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">新省份</span>
+                        <select  class="form-control" name="province" id="province">
+                            <option value="请选择省份">请选择省份</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">新城市</span>
+                        <select class="form-control" name="city" id="city">
+                            <option value="请选择城市">请选择城市</option>
+                        </select>
+                    </div>
+                    <div class="input-group" style="left: 100px;margin-top: 10px">
+                        <button id="btn3" type="submit" class="btn btn-primary block">Change ProvinceAndCity</button>
+                    </div>
+                </form>
+            </div>
+            <div id="hp_cg" class="tab-pane fade" enctype="multipart/form-data">
+                <form class="m-t" role="form" action="" method="post" id="form_hp">
+                    <div class="input-group">
+                        <span class="input-group-addon">您现在的头像是:<img id="image" alt="image" class="img-circle" th:src="${headPicture}" style="width: 48px;height: 48px" /></span>
+                    </div>
+                    <div class="input-group">
+                        <input class="form-control" id="file" onchange="upload()" type="file" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;" required="">
+                        <input class="form-control" type="text" id="headPicture_new" name="headPicture_new" style="position: absolute; filter: alpha(opacity = 0); opacity: 0; width: 30px;"  required=""/>
+                    </div>
+                    <div class="input-group" style="left: 100px;margin-top: 10px">
+                        <!--<button id="btn4" type="submit" class="btn btn-primary block">Change HeadPicture</button>-->
+                        <input type="button" class="btn btn-block" value="更换头像" onclick="chooseImage()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

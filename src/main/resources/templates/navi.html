@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Insert title here</title>
+</head>
+<body>
+<nav class="navbar-default navbar-static-side" role="navigation" th:fragment="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    	<span>
+                            <img alt="image" class="img-circle" th:src="${headPicture}" style="width: 48px;height: 48px" />
+						</span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                            	<span class="block m-t-xs">
+                            		<strong class="font-bold" th:text="${userName}"></strong>
+                             	</span>
+                             </span>
+                    </a>
+                </div>
+                <div class="logo-element">
+                    hello
+                </div>
+            </li>
+            <li>
+                <a th:href="@{index}"><i class="fa fa-diamond"></i> <span class="nav-label">首页</span></a>
+            </li>
+            <li id="admin">
+                <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">用户管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li id="info_cg"><a th:href="@{/admin/info(userName=${userName})}">信息修改</a></li>
+                    <li id="xxx"><a>xxx</a></li>
+                </ul>
+            </li>
+            <li id="news">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">内容管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li id="newsManage"><a th:href="@{/admin/newsManage_0_0_0(userName=${userName})}">文章管理</a></li>
+                    <li id="newsCategoryManage"><a th:href="@{/admin/newsCategoryManage_0_0_0(userName=${userName})}">文章分类</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

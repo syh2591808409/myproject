@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <div th:fragment="info_change">
+        <div class="container" id="info_change">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#pw-cg">修改密码</a></li>
+                <li ><a data-toggle="tab" href="#rn-cg">修改昵称</a></li>
+                <!--<li><a data-toggle="tab" href="#pc-cg">修改地区</a></li>-->
+                <!--<li><a data-toggle="tab" href="#hp-cg">修改头像</a></li>-->
+            </ul>
+            <div class="tab-content">
+                <div id="pw-cg" class="tab-pane fade in active">
+                    <form class="m-t" role="form" action="index" method="post">
+                        <div class="input-group" style="left: 350px;padding-top: 10px">
+                            <span class="input-group-addon">旧密码</span>
+                            <input class="form-control" type="password" style="width: 300px" placeholder="print your old password" name="password_old" required="" />
+                        </div>
+                        <div class="input-group" style="left: 350px;padding-top: 5px">
+                            <span class="input-group-addon">新密码</span>
+                            <input class="form-control" type="password" style="width: 300px" placeholder="print your new password" name="password" required="" />
+                        </div>
+                        <div class="input-group" style="left: 350px;padding-top: 5px">
+                            <span class="input-group-addon">新密码</span>
+                            <input class="form-control" type="password" style="width: 300px" placeholder="print your new password again" name="password2" required="" />
+                        </div>
+                    </form>
+                </div>
+                <div id="rn-cg" class="tab-pane fade">
+                    <form class="m-t" role="form" action="index" method="post">
+                        <div class="input-group" style="left: 350px;padding-top: 10px">
+                            <span class="input-group-addon">旧昵称</span>
+                            <input class="form-control" type="text" style="width: 300px"  th:value="${userName}" required="" readonly/>
+                        </div>
+                        <div class="input-group" style="left: 350px;padding-top: 5px">
+                            <span class="input-group-addon">新昵称</span>
+                            <input class="form-control" type="text" style="width: 300px" placeholder="print your new realName again" name="realName" required="" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

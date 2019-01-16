@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>INSPINIA | sendMessage</title>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <!-- Sweet Alert -->
+    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+</head>
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+                <h2 class="logo-name">Hello</h2>
+            </div>
+            <h3>Welcome to my project</h3>
+            <p>
+                Start your show!
+            </p>
+            <p>sendEmail to change your password. To see it in action.</p>
+            <form class="m-t" role="form" action="sendEmail" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="输入账号" name="userName" required=""/>
+                    </div>
+                    <p id="remind1" class="text-muted text-color" style="color: #ee1e2d"><middle>4到16位（字母，数字，下划线，减号）</middle></p>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="输入姓名" name="realName" required=""/>
+                    </div>
+                    <p id="remind2" class="text-muted text-color" style="color: #ee1e2d"><middle>请输入中文名字</middle></p>
+                    <div class="form-group">
+                        <input id="email" type="email" class="form-control" placeholder="输入邮箱" name="emailAddress" required=""/>
+                    </div>
+                    <p id="remind3" class="text-muted text-color" style="color: #ee1e2d"><middle>请输入正确格式</middle></p>
+                    <button id="button1"  type="submit" class="btn btn-primary block full-width m-b" disabled>SendEmail</button>
+            </form>
+            <a th:href="@{login}" href="#"><small>back to login?</small></a>
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script th:src="@{/js/jquery-2.1.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- Sweet alert -->
+    <script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
+    <script th:inline="javascript">
+        var cb_flag = [0,0,0];
+
+        document.getElementsByClassName('m-t')[0].onchange = function () {
+                var cb_tag = cb_flag.every(function(x) {
+                    return x==1;
+                });
+                if (!cb_tag) {
+                    document.getElementById('button1').disabled = true;
+                } else {
+                    document.getElementById('button1').disabled = false;
+                }
+        }
+
+        var userNamePattern = /^[a-zA-Z0-9_-]{4,16}$/;
+        document.getElementById('remind1').style.display='none';
+        document.getElementsByName('userName')[0].onchange = function () {
+            if(userNamePattern.test(this.value)){
+                document.getElementById('remind1').style.display='none';
+                cb_flag[0]=1;
+            }else{
+                document.getElementById('remind1').style.display='inline';
+                cb_flag[0]=0;
+            }
+        }
+
+        var realNamePattern = /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,11}$/;
+        document.getElementById('remind2').style.display='none';
+        document.getElementsByName('realName')[0].onchange = function() {
+            if(realNamePattern.test(this.value)){
+                document.getElementById('remind2').style.display='none';
+                cb_flag[1]=1;
+            }else {
+                document.getElementById('remind2').style.display='inline';
+                cb_flag[1]=0;
+            }
+        }
+
+        var emailPattern = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        document.getElementById('remind3').style.display='none';
+        document.getElementById('email').onchange = function() {
+            if(emailPattern.test(this.value)){
+                document.getElementById('remind3').style.display='none';
+                cb_flag[2]=1;
+            }else{
+                document.getElementById('remind3').style.display='inline';
+                cb_flag[2]=0;
+            }
+        }
+
+        var error = [[${error}]];
+        $(document).ready(function () {
+            if(error!=null){
+                swal({
+                    title : "温馨提示",
+                    text : error
+                });
+            }
+        });
+    </script>
+</body>
+</html>
